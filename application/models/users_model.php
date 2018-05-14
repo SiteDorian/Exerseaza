@@ -32,6 +32,7 @@ class Users_model extends CI_Model
     public function get($id)
     {
         $query = $this->db->query("select * from users where id=$id");
+
         return $query->result();
     }
 
