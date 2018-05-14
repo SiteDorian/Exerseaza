@@ -95,3 +95,21 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+//other database for admin
+$db['otherdb']['hostname'] = "localhost";
+$db['otherdb']['username'] = "root";
+$db['otherdb']['password'] = "";
+$db['otherdb']['database'] = "ci_adminlte";
+$db['otherdb']['dbdriver'] = "mysql";
+$db['otherdb']['dbprefix'] = "";
+$db['otherdb']['pconnect'] = TRUE;
+$db['otherdb']['db_debug'] = FALSE;
+$db['otherdb']['cache_on'] = FALSE;
+$db['otherdb']['cachedir'] = "";
+$db['otherdb']['char_set'] = "utf8";
+$db['otherdb']['dbcollat'] = "utf8_general_ci";
+$db['otherdb']['swap_pre'] = "";
+$db['otherdb']['autoinit'] = TRUE;
+$db['otherdb']['stricton'] = FALSE;
+//admin database

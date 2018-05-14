@@ -13,18 +13,18 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                 <ul class="nav navbar-nav">
-                    <li><a href="<?=site_url('welcome')?>" class="<?php if ($active=='home') echo ' act'; ?>">Acasa</a></li>
+                    <li><a href="<?=site_url('welcome')?>" class="<?php if ($active_category=='home') echo ' act'; ?>">Acasa</a></li>
 
 
                     <!-- Mega Menu -->
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle <?php if ($active=='products') echo ' act'; ?>" data-toggle="dropdown">Produse <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle <?php if ($active_category=='products') echo ' act'; ?>" data-toggle="dropdown">Produse <b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-3">
                             <div class="row">
 
                                 <?php
 
-                                if ($status!==200)
+                                if (!$categories)
                                 {
                                     echo "Internal server error.";
                                 }
@@ -46,7 +46,7 @@
                                                     </h6>
 
                                                     <?php
-                                                    foreach ($content as $k => $val) {
+                                                    foreach ($categories as $k => $val) {
                                                         if ($val['id_parent']==$id_curent)
                                                         {
                                                             $cat=$val['name'];
@@ -110,14 +110,9 @@
                     </li>
 
 
-                    <li><a href="about.html">About Us</a></li>
-                    <li class="w3pages"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="icons.html">Web Icons</a></li>
-                            <li><a href="codes.html">Short Codes</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="mail.html">Mail Us</a></li>
+                    <li><a href="<?=site_url('about')?>" class="<?php if ($active_category=='about') echo ' act'; ?>">About us</a></li>
+
+                    <li><a href="<?=site_url('mail')?>" class="<?php if ($active_category=='mail') echo ' act'; ?>">Mail us</a></li>
                 </ul>
             </div>
         </nav>
