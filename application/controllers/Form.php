@@ -6,6 +6,7 @@ class Form extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('registration_model');
+        $this->load->model('users_model');
     }
 
     public function index()
@@ -43,12 +44,46 @@ class Form extends CI_Controller {
             $this->load->view('home_body');
 
             $this->load->view('inc/footer');
+
+            return false;
         }
         else
         {
-            //$this->load->view('formsuccess');
+            $user = $this->users_model->getByEmail($_POST['email']);
 
-            $registrer = $this->registration_model->register($_POST);
+            if (!$user){
+                $registrer = $this->registration_model->register($_POST);
+                if ($registrer==0){
+                    $this->load->view('formsuccess');
+                } else {
+
+                }
+            } else {
+                $data['register_errors'] = "This email already exist.";
+                $this->load->view('inc/header');
+
+                $this->load->view('login', $data);
+
+
+                $categories = $this->categories_model->getAll();
+
+//        $categories['active']='home'; //indica meniul activ
+
+                $this->load->view('widgets/navigation', [
+                    'categories' => $categories,
+                    'active_category' => 'home'
+                ]);
+
+                $this->load->view('home_body');
+
+                $this->load->view('inc/footer');
+
+                return false;
+            }
+
+
+
+
         }
     }
 
@@ -80,10 +115,71 @@ class Form extends CI_Controller {
             $this->load->view('home_body');
 
             $this->load->view('inc/footer');
+
+            return false;
         }
         else
         {
-            $this->load->view('formsuccess');
+            $user = $this->users_model->getByEmail($_POST['email_login']);
+            if ($user){
+                if ($user->password == md5($_POST['password'])){
+                    $this->load->view('inc/header');
+
+                    $categories = $this->categories_model->getAll();
+
+                    $this->load->view('widgets/navigation', [
+                        'categories' => $categories,
+                        'active_category' => 'home'
+                    ]);
+
+                    $this->load->view('home_body');
+
+                    $this->load->view('inc/footer');
+
+                    return false;
+                } else {
+                    $data['login_errors'] = "Incorrect password.";
+                    $this->load->view('inc/header');
+
+                    $this->load->view('login', $data);
+
+
+                    $categories = $this->categories_model->getAll();
+
+
+                    $this->load->view('widgets/navigation', [
+                        'categories' => $categories,
+                        'active_category' => 'home'
+                    ]);
+
+                    $this->load->view('home_body');
+
+                    $this->load->view('inc/footer');
+
+                    return false;
+                }
+            } else {
+                $data['login_errors'] = "Incorrect email.";
+                $this->load->view('inc/header');
+
+                $this->load->view('login', $data);
+
+
+                $categories = $this->categories_model->getAll();
+
+
+                $this->load->view('widgets/navigation', [
+                    'categories' => $categories,
+                    'active_category' => 'home'
+                ]);
+
+                $this->load->view('home_body');
+
+                $this->load->view('inc/footer');
+
+                return false;
+            }
+
         }
     }
 }

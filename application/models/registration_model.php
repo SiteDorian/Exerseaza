@@ -16,7 +16,18 @@ class Registration_model extends CI_Model
         $password = $user['password'];
         $passconf = $user['passconf'];
 
+        $data = array(
+            'name' => $name,
+            'email' => $email,
+            'password' => md5($password),
+            'status' => true,
+            'created_at' => date(),
+            'updated_at' => date()
+        );
 
+        $this->db->insert('users', $data);
+
+        return $this->db->affected_rows();
 
     }
 }

@@ -12,7 +12,7 @@ class Users_model extends CI_Model
         //$this->load->database();
     }
 
-    public $id, $fid, $gid, $name, $email, $password, $status, $created_at, $updated_at = time();
+    public $id, $fid, $gid, $name, $email, $password, $status, $created_at, $updated_at;
 
     /**
      * @return mixed
@@ -25,8 +25,9 @@ class Users_model extends CI_Model
 
     public function getByEmail($email)
     {
-        $query = $this->db->query("select * from users where email like '$email'");
-        return $query->result();
+        //$query = $this->db->query("select * from users where email like '$email'")->get()->row();
+        $rez = $this->db->select('*')->from('users')->where('email', $email)->get()->row();
+        return $rez;
     }
 
     public function get($id)
@@ -37,6 +38,11 @@ class Users_model extends CI_Model
     }
 
     public function update()
+    {
+        //todo
+    }
+
+    public function delete($id)
     {
         //todo
     }
