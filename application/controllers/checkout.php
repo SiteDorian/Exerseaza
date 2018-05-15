@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller
+class Checkout extends CI_Controller
 {
 
     /**
@@ -17,28 +17,18 @@ class Welcome extends CI_Controller
     {
         $this->load->view('inc/header');
 
-        if ($this->session->userdata('validated')) {
-            $this->load->view('user',
-                ['name' => $this->session->userdata('name'), 'email' => $this->session->userdata('name')]);
-        } else {
-            $this->load->view('login');
-        }
-
+        $this->load->view('login');
 
         $categories = $this->categories_model->getAll();
 
-//        $categories['active']='home'; //indica meniul activ
-
         $this->load->view('widgets/navigation', [
             'categories' => $categories,
-            'active_category' => 'home'
+            'active_category' => 'checkout'
         ]);
 
-        $this->load->view('home_body');
+        $this->load->view('checkout_body');
 
         $this->load->view('inc/footer');
-
     }
-
 
 }

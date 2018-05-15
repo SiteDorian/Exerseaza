@@ -18,6 +18,7 @@
     <!-- Custom Theme files -->
     <link href="<?php echo base_url() . '/assets/css/bootstrap.css'; ?> " rel="stylesheet" type="text/css" media="all"/>
     <link href="<?php echo base_url() . '/assets/css/style.css'; ?>" rel="stylesheet" type="text/css" media="all"/>
+    <link href="<?php echo base_url() . '/assets/css/user.css'; ?>" rel="stylesheet" type="text/css" media="all"/>
     <link href="<?php echo base_url() . '/assets/css/fasthover.css'; ?>" rel="stylesheet" type="text/css" media="all"/>
     <link href="<?php echo base_url() . '/assets/css/popuo-box.css'; ?>" rel="stylesheet" type="text/css" media="all"/>
     <!-- //Custom Theme files -->

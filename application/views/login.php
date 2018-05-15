@@ -26,7 +26,7 @@
                                                 <input name="email_login" placeholder="Email Address" value="<?php echo set_value('email_login'); ?>" type="email" required="">
                                                 <input name="password" placeholder="Password" type="password"
                                                        required="">
-                                                <div style="color: red; font-style: italic";>
+                                                <div style="color: red; font-style: italic;">
                                                     <p>
                                                         <?php if (isset($login_errors)) echo $login_errors;  ?>
                                                     </p>

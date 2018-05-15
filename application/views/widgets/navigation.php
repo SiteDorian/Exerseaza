@@ -113,6 +113,8 @@
                     <li><a href="<?=site_url('about')?>" class="<?php if ($active_category=='about') echo ' act'; ?>">About us</a></li>
 
                     <li><a href="<?=site_url('mail')?>" class="<?php if ($active_category=='mail') echo ' act'; ?>">Mail us</a></li>
+
+                    <li><a href="<?=site_url('checkout')?>" class="<?php if ($active_category=='checkout') echo ' act'; ?>">Checkout</a></li>
                 </ul>
             </div>
         </nav>

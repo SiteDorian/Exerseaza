@@ -21,8 +21,8 @@ class Registration_model extends CI_Model
             'email' => $email,
             'password' => md5($password),
             'status' => true,
-            'created_at' => date(),
-            'updated_at' => date()
+            'created_at' => date("Y-m-d h:i:sa"),
+            'updated_at' => date("Y-m-d h:i:sa")
         );
 
         $this->db->insert('users', $data);

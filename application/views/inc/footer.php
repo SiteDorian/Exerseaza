@@ -85,6 +85,7 @@
 <script>
     w3ls.render();
 
+
     w3ls.cart.on('w3sb_checkout', function (evt) {
         var items, len, i;
 
@@ -92,10 +93,16 @@
             items = this.items();
 
             for (i = 0, len = items.length; i < len; i++) {
+                alert("item nr."+i);
+
             }
         }
     });
 </script>
 <!-- //cart-js -->
+
+
+
+
 </body>
 </html>

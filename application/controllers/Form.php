@@ -56,7 +56,26 @@ class Form extends CI_Controller {
                 if ($registrer==0){
                     $this->load->view('formsuccess');
                 } else {
+                    $data['login_errors']="Successfull register. <br> Please login...";
+                    $this->load->view('inc/header');
 
+                    $this->load->view('login', $data);
+
+
+                    $categories = $this->categories_model->getAll();
+
+//        $categories['active']='home'; //indica meniul activ
+
+                    $this->load->view('widgets/navigation', [
+                        'categories' => $categories,
+                        'active_category' => 'home'
+                    ]);
+
+                    $this->load->view('home_body');
+
+                    $this->load->view('inc/footer');
+
+                    return false;
                 }
             } else {
                 $data['register_errors'] = "This email already exist.";
@@ -89,8 +108,6 @@ class Form extends CI_Controller {
 
     public function login()
     {
-
-
         $this->form_validation->set_rules('email_login', 'Email', 'trim|required|valid_email');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
 
@@ -123,20 +140,17 @@ class Form extends CI_Controller {
             $user = $this->users_model->getByEmail($_POST['email_login']);
             if ($user){
                 if ($user->password == md5($_POST['password'])){
-                    $this->load->view('inc/header');
+                    $data = array(
+                        'id' => $user->id,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'validated' => true
+                    );
+                    $this->session->set_userdata($data);
 
-                    $categories = $this->categories_model->getAll();
+                    redirect('welcome');
 
-                    $this->load->view('widgets/navigation', [
-                        'categories' => $categories,
-                        'active_category' => 'home'
-                    ]);
-
-                    $this->load->view('home_body');
-
-                    $this->load->view('inc/footer');
-
-                    return false;
+                    return true;
                 } else {
                     $data['login_errors'] = "Incorrect password.";
                     $this->load->view('inc/header');
