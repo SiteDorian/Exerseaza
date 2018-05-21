@@ -30,4 +30,20 @@ class Registration_model extends CI_Model
         return $this->db->affected_rows();
 
     }
+
+    public function facebookRegister($user)
+    {
+        $data = array(
+            'fid' => $user['id'],
+            'name' => $user['name'],
+            'email' => $user['email'],
+            'status' => true,
+            'created_at' => date("Y-m-d h:i:sa"),
+            'updated_at' => date("Y-m-d h:i:sa")
+        );
+
+        $this->db->insert('users', $data);
+
+        return $this->db->affected_rows();
+    }
 }

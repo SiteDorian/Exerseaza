@@ -85,7 +85,6 @@
 <script>
     w3ls.render();
 
-
     w3ls.cart.on('w3sb_checkout', function (evt) {
         var items, len, i;
 
@@ -93,11 +92,26 @@
             items = this.items();
 
             for (i = 0, len = items.length; i < len; i++) {
-                alert("item nr."+i);
-
+                //alert("item nr."+i + items[i] );
+                console.log("item " + i);
+                console.log(items[i]);
             }
+
+
+
+            alert("stop");
         }
     });
+
+
+    var cart = JSON.parse(decodeURIComponent( localStorage.getItem("w3lssbmincart") ));
+
+    //console.log(cart);
+
+    console.log(this.cart['value']['items']);
+
+
+
 </script>
 <!-- //cart-js -->
 

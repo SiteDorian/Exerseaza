@@ -296,7 +296,7 @@
                                     <p><span>$250</span> <i class="item_price"><?php echo $value['price']; ?></i></p>
                                     <form action="#" method="post">
                                         <input type="hidden" name="cmd" value="_cart"/>
-                                        <input type="hidden" name="add" value="1"/>
+                                        <input type="hidden" name="add" value="<?php echo $value['id']; ?>"/>
                                         <input type="hidden" name="w3ls_item" value="<?php echo $value['name']; ?>"/>
                                         <input type="hidden" name="amount"
                                                value="<?php echo preg_replace('~[\\\\/:*?$,"<>|]~', null,
@@ -393,7 +393,8 @@
                                     <p><span>$250</span> <i class="item_price"><?php echo $value['price']; ?></i></p>
                                     <form action="#" method="post">
                                         <input type="hidden" name="cmd" value="_cart"/>
-                                        <input type="hidden" name="add" value="1"/>
+                                        <input type="hidden" name="id_product" value="<?php echo $value['id']; ?>"/>
+                                        <input type="hidden" name="add" value="<?php echo $value['id']; ?>"/>
                                         <input type="hidden" name="w3ls_item" value="<?php echo $value['name']; ?>"/>
                                         <input type="hidden" name="amount"
                                                value="<?php echo preg_replace('~[\\\\/:*?$,"<>|]~', null,
@@ -466,7 +467,7 @@
                                 <p><span>$250</span> <i class="item_price">$245</i></p>
                                 <form action="#" method="post">
                                     <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
+                                    <input type="hidden" name="add" value="2"/>
                                     <input type="hidden" name="w3ls_item" value="Smart Phone"/>
                                     <input type="hidden" name="amount" value="245.00"/>
                                     <button type="submit" class="w3ls-cart">Add to cart</button>

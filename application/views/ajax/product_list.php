@@ -45,7 +45,7 @@ if ($i++ % 3 == 0) {
                 <p><span>$250</span> <i class="item_price"><?php echo $value['price']; ?></i></p>
                 <form action="#" method="post">
                     <input type="hidden" name="cmd" value="_cart"/>
-                    <input type="hidden" name="add" value="1"/>
+                    <input type="hidden" name="add" value="<?php echo $value['id']; ?>"/>
                     <input type="hidden" name="w3ls_item" value="<?php echo $value['name']; ?>"/>
                     <input type="hidden" name="amount"
                            value="<?php echo preg_replace('~[\\\\/:*?$,"<>|]~', null,

@@ -1,6 +1,7 @@
 <?php
 
-class Form extends CI_Controller {
+class Form extends CI_Controller
+{
 
     public function __construct()
     {
@@ -14,6 +15,49 @@ class Form extends CI_Controller {
 
     }
 
+    public function ajaxRegistration()
+    {
+
+
+
+
+            echo json_encode([
+                'html' => 'erroare 112 registration',
+                'success' => 1
+            ]);
+
+            return;
+
+
+    }
+
+    public function ajaxLogin()
+    {
+
+
+        $this->form_validation->set_rules('email_login', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
+
+        if ($this->form_validation->run() == false) {
+            echo json_encode([
+                'html' => validation_errors(),
+                'success' => 1
+            ]);
+            return;
+
+        }
+
+
+            echo json_encode([
+                'html' => 'erroare 112 login',
+                'success' => 1
+            ]);
+
+
+
+
+    }
+
     public function registration()
     {
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -22,8 +66,7 @@ class Form extends CI_Controller {
         $this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
 
 
-        if ($this->form_validation->run() == FALSE)
-        {
+        if ($this->form_validation->run() == false) {
 
             $data['register_errors'] = validation_errors();
 
@@ -33,6 +76,16 @@ class Form extends CI_Controller {
 
 
             $categories = $this->categories_model->getAll();
+
+            /*echo json_encode([
+                'success' => 0,
+                'error' => [
+                    'login' => 'error message',
+                    'password' => 'error message'
+                ]
+            ]);
+            return;
+            */
 
 //        $categories['active']='home'; //indica meniul activ
 
@@ -45,40 +98,16 @@ class Form extends CI_Controller {
 
             $this->load->view('inc/footer');
 
-            return false;
+            return;
         }
-        else
-        {
-            $user = $this->users_model->getByEmail($_POST['email']);
+        $user = $this->users_model->getByEmail($_POST['email']);
 
-            if (!$user){
-                $registrer = $this->registration_model->register($_POST);
-                if ($registrer==0){
-                    $this->load->view('formsuccess');
-                } else {
-                    $data['login_errors']="Successfull register. <br> Please login...";
-                    $this->load->view('inc/header');
-
-                    $this->load->view('login', $data);
-
-
-                    $categories = $this->categories_model->getAll();
-
-//        $categories['active']='home'; //indica meniul activ
-
-                    $this->load->view('widgets/navigation', [
-                        'categories' => $categories,
-                        'active_category' => 'home'
-                    ]);
-
-                    $this->load->view('home_body');
-
-                    $this->load->view('inc/footer');
-
-                    return false;
-                }
+        if (!$user) {
+            $registrer = $this->registration_model->register($_POST);
+            if ($registrer == 0) {
+                $this->load->view('formsuccess');
             } else {
-                $data['register_errors'] = "This email already exist.";
+                $data['login_errors'] = "Successfull register. <br> Please login...";
                 $this->load->view('inc/header');
 
                 $this->load->view('login', $data);
@@ -99,22 +128,8 @@ class Form extends CI_Controller {
 
                 return false;
             }
-
-
-
-
-        }
-    }
-
-    public function login()
-    {
-        $this->form_validation->set_rules('email_login', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
-
-
-        if ($this->form_validation->run() == FALSE)
-        {
-            $data['login_errors'] = validation_errors();
+        } else {
+            $data['register_errors'] = "This email already exist.";
             $this->load->view('inc/header');
 
             $this->load->view('login', $data);
@@ -135,11 +150,41 @@ class Form extends CI_Controller {
 
             return false;
         }
-        else
-        {
+
+
+    }
+
+    public function login()
+    {
+        $this->form_validation->set_rules('email_login', 'Email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]');
+
+
+        if ($this->form_validation->run() == false) {
+            $data['login_errors'] = validation_errors();
+            $this->load->view('inc/header');
+
+            $this->load->view('login', $data);
+
+
+            $categories = $this->categories_model->getAll();
+
+//        $categories['active']='home'; //indica meniul activ
+
+            $this->load->view('widgets/navigation', [
+                'categories' => $categories,
+                'active_category' => 'home'
+            ]);
+
+            $this->load->view('home_body');
+
+            $this->load->view('inc/footer');
+
+            return false;
+        } else {
             $user = $this->users_model->getByEmail($_POST['email_login']);
-            if ($user){
-                if ($user->password == md5($_POST['password'])){
+            if ($user) {
+                if ($user->password == md5($_POST['password'])) {
                     $data = array(
                         'id' => $user->id,
                         'name' => $user->name,
@@ -150,7 +195,7 @@ class Form extends CI_Controller {
 
                     redirect('welcome');
 
-                    return true;
+                    return;
                 } else {
                     $data['login_errors'] = "Incorrect password.";
                     $this->load->view('inc/header');
@@ -195,5 +240,16 @@ class Form extends CI_Controller {
             }
 
         }
+    }
+
+    public function logout()
+    {
+        // Remove local Facebook session
+        $this->facebook->destroy_session();
+        // Remove user data from session
+        $array_items = array('id', 'name', 'email', 'validated');
+        $this->session->unset_userdata($array_items);
+        // Redirect to login page
+        redirect('/welcome');
     }
 }

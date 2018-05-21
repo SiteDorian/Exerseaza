@@ -1671,6 +1671,9 @@ function Cart(name, duration) {
         if (items) {
             for (i = 0, len = items.length; i < len; i++) {
                 this.add(items[i]);
+                //console.log(items[i]);
+                //TODO add products
+                //alert(i);
             }
         }
     }
@@ -2883,7 +2886,8 @@ View.prototype.bind = function bind(form) {
 View.prototype.addItem = function addItem(idx, data) {
     this.redraw();
     this.show();
-
+     //todo ajax
+    //console.log(data);
     var els = this.el.querySelectorAll('.' + constants.ITEM_CLASS);
     css.add(els[idx], constants.ITEM_CHANGED_CLASS);
 };

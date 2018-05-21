@@ -4,7 +4,8 @@
         <nav class="navbar navbar-default">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header nav_2">
-                <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                        data-target="#bs-megadropdown-tabs">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -13,26 +14,26 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                 <ul class="nav navbar-nav">
-                    <li><a href="<?=site_url('welcome')?>" class="<?php if ($active_category=='home') echo ' act'; ?>">Acasa</a></li>
+                    <li><a href="<?= site_url('welcome') ?>" class="<?php if ($active_category == 'home') {
+                            echo ' act';
+                        } ?>">Acasa</a></li>
 
 
                     <!-- Mega Menu -->
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle <?php if ($active_category=='products') echo ' act'; ?>" data-toggle="dropdown">Produse <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle <?php if ($active_category == 'products') {
+                            echo ' act';
+                        } ?>" data-toggle="dropdown">Produse <b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-3">
                             <div class="row">
 
                                 <?php
 
-                                if (!$categories)
-                                {
+                                if (!$categories) {
                                     echo "Internal server error.";
-                                }
-                                else
-                                {
-                                    foreach($categories as $key => $value):
-                                        if ($value['id_parent']==null)
-                                        {
+                                } else {
+                                    foreach ($categories as $key => $value):
+                                        if ($value['id_parent'] == null) {
                                             $id_curent = $value['id'];
 
                                             ?>
@@ -47,10 +48,9 @@
 
                                                     <?php
                                                     foreach ($categories as $k => $val) {
-                                                        if ($val['id_parent']==$id_curent)
-                                                        {
-                                                            $cat=$val['name'];
-                                                            echo "<li><a href='".site_url('products')."?category=$cat'>". $val['name']."</a></li>";
+                                                        if ($val['id_parent'] == $id_curent) {
+                                                            $cat = $val['name'];
+                                                            echo "<li><a href='" . site_url('products') . "?category=$cat'>" . $val['name'] . "</a></li>";
                                                         }
                                                     }
                                                     ?>
@@ -61,12 +61,8 @@
                                         <?php } ?>
 
 
-
-
-
-                                    <?php endforeach; } ?>
-
-
+                                    <?php endforeach;
+                                } ?>
 
 
                                 <!--
@@ -110,11 +106,17 @@
                     </li>
 
 
-                    <li><a href="<?=site_url('about')?>" class="<?php if ($active_category=='about') echo ' act'; ?>">About us</a></li>
+                    <li><a href="<?= site_url('about') ?>" class="<?php if ($active_category == 'about') {
+                            echo ' act';
+                        } ?>">Despre</a></li>
 
-                    <li><a href="<?=site_url('mail')?>" class="<?php if ($active_category=='mail') echo ' act'; ?>">Mail us</a></li>
+                    <li><a href="<?= site_url('mail') ?>" class="<?php if ($active_category == 'mail') {
+                            echo ' act';
+                        } ?>">Contact</a></li>
 
-                    <li><a href="<?=site_url('checkout')?>" class="<?php if ($active_category=='checkout') echo ' act'; ?>">Checkout</a></li>
+<!--                    <li><a href="--><?//= site_url('checkout') ?><!--" class="--><?php //if ($active_category == 'checkout') {
+//                            echo ' act';
+//                        } ?><!--">Checkout</a></li>-->
                 </ul>
             </div>
         </nav>

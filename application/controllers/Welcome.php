@@ -19,7 +19,7 @@ class Welcome extends CI_Controller
 
         if ($this->session->userdata('validated')) {
             $this->load->view('user',
-                ['name' => $this->session->userdata('name'), 'email' => $this->session->userdata('name')]);
+                ['name' => $this->session->userdata('name'), 'email' => $this->session->userdata('email')]);
         } else {
             $this->load->view('login');
         }
