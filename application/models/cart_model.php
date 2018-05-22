@@ -39,7 +39,7 @@ EOD;
 
     public function closeCart($id)
     {
-
+        return;
     }
 
 
