@@ -354,36 +354,35 @@
                                 <p><?php echo $value['description']; ?></p>
                                 <div class="rating">
                                     <?php
-                                        foreach ($rating as $b =>$rat)
-                                        {
-                                            if ($rat['id']==$value['id']){
-                                                $stars=$rat['round'];
-                                                break;
-                                            }
+                                    foreach ($rating as $b => $rat) {
+                                        if ($rat['id'] == $value['id']) {
+                                            $stars = $rat['round'];
+                                            break;
                                         }
+                                    }
 
 
-                                        for ($i=1; $i<=$stars; $i++):
+                                    for ($i = 1; $i <= $stars; $i++):
 
 
-                                    ?>
-                                    <div class="rating-left">
-                                        <img src="<?php echo base_url(); ?>images/star-.png" alt=" "
-                                             class="img-responsive"/>
-                                    </div>
+                                        ?>
+                                        <div class="rating-left">
+                                            <img src="<?php echo base_url(); ?>images/star-.png" alt=" "
+                                                 class="img-responsive"/>
+                                        </div>
 
                                     <?php
-                                        endfor;
+                                    endfor;
 
-                                        for ($i=1; $i<=(5-$stars); $i++):
+                                    for ($i = 1; $i <= (5 - $stars); $i++):
 
-                                    ?>
-                                            <div class="rating-left">
-                                                <img src="<?php echo base_url(); ?>images/star.png" alt=" "
-                                                     class="img-responsive"/>
-                                            </div>
+                                        ?>
+                                        <div class="rating-left">
+                                            <img src="<?php echo base_url(); ?>images/star.png" alt=" "
+                                                 class="img-responsive"/>
+                                        </div>
                                     <?php
-                                        endfor;
+                                    endfor;
                                     ?>
 
 

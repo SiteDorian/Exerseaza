@@ -1858,6 +1858,8 @@ Cart.prototype.save = function save() {
         data.push(items[i].get());
     }
 
+    console.log(data);
+
     Storage.prototype.save.call(this, {
         items: data,
         settings: settings

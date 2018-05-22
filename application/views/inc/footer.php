@@ -108,7 +108,7 @@
 
     //console.log(cart);
 
-    console.log(this.cart['value']['items']);
+    //console.log(this.cart['value']['items']);
 
 
 

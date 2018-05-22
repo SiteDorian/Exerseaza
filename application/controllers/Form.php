@@ -19,14 +19,12 @@ class Form extends CI_Controller
     {
 
 
+        echo json_encode([
+            'html' => 'erroare 112 registration',
+            'success' => 1
+        ]);
 
-
-            echo json_encode([
-                'html' => 'erroare 112 registration',
-                'success' => 1
-            ]);
-
-            return;
+        return;
 
 
     }
@@ -48,12 +46,10 @@ class Form extends CI_Controller
         }
 
 
-            echo json_encode([
-                'html' => 'erroare 112 login',
-                'success' => 1
-            ]);
-
-
+        echo json_encode([
+            'html' => 'succes login',
+            'success' => 1
+        ]);
 
 
     }
@@ -180,45 +176,25 @@ class Form extends CI_Controller
 
             $this->load->view('inc/footer');
 
-            return false;
-        } else {
-            $user = $this->users_model->getByEmail($_POST['email_login']);
-            if ($user) {
-                if ($user->password == md5($_POST['password'])) {
-                    $data = array(
-                        'id' => $user->id,
-                        'name' => $user->name,
-                        'email' => $user->email,
-                        'validated' => true
-                    );
-                    $this->session->set_userdata($data);
+            return;
+        }
 
-                    redirect('welcome');
+        $user = $this->users_model->getByEmail($_POST['email_login']);
+        if ($user) {
+            if ($user->password == md5($_POST['password'])) {
+                $data = array(
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'validated' => true
+                );
+                $this->session->set_userdata($data);
 
-                    return;
-                } else {
-                    $data['login_errors'] = "Incorrect password.";
-                    $this->load->view('inc/header');
+                redirect('welcome');
 
-                    $this->load->view('login', $data);
-
-
-                    $categories = $this->categories_model->getAll();
-
-
-                    $this->load->view('widgets/navigation', [
-                        'categories' => $categories,
-                        'active_category' => 'home'
-                    ]);
-
-                    $this->load->view('home_body');
-
-                    $this->load->view('inc/footer');
-
-                    return false;
-                }
+                return;
             } else {
-                $data['login_errors'] = "Incorrect email.";
+                $data['login_errors'] = "Incorrect password.";
                 $this->load->view('inc/header');
 
                 $this->load->view('login', $data);
@@ -238,8 +214,29 @@ class Form extends CI_Controller
 
                 return false;
             }
+        } else {
+            $data['login_errors'] = "Incorrect email.";
+            $this->load->view('inc/header');
 
+            $this->load->view('login', $data);
+
+
+            $categories = $this->categories_model->getAll();
+
+
+            $this->load->view('widgets/navigation', [
+                'categories' => $categories,
+                'active_category' => 'home'
+            ]);
+
+            $this->load->view('home_body');
+
+            $this->load->view('inc/footer');
+
+            return false;
         }
+
+
     }
 
     public function logout()
