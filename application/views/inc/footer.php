@@ -81,7 +81,7 @@
 <!-- //footer -->
 
 <!-- cart-js -->
-<script src="<?php echo base_url(); ?>/assets/js/minicart.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/minicart.js"></script>
 <script>
     w3ls.render();
 
@@ -93,8 +93,8 @@
 
             for (i = 0, len = items.length; i < len; i++) {
                 //alert("item nr."+i + items[i] );
-                console.log("item " + i);
-                console.log(items[i]);
+                //console.log("item " + i);
+                //console.log(items[i]);
             }
 
 

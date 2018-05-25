@@ -22,7 +22,7 @@
                                     <div class="facts">
                                         <div class="register">
                                             <!--<form action="<?php echo site_url('login'); ?>" method="post"> -->
-                                            <?php echo form_open('form/login', array('id'=>'form')); ?>
+                                            <?php echo form_open('form/login', array('id'=>'form1')); ?>
 
                                             <input name="email_login" id="i_mail" placeholder="Email Address"
                                                    value="<?php echo set_value('email_login'); ?>" type="email"
@@ -48,7 +48,7 @@
                                 <div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
                                     <div class="facts">
                                         <div class="register">
-                                            <?php echo form_open('form/registration'); ?>
+                                            <?php echo form_open('form/registration', array('id'=>'form2')); ?>
                                             <input placeholder="Name" name="username"
                                                    value="<?php echo set_value('username'); ?>" type="text" required="">
                                             <input placeholder="Email Address" name="email"
@@ -66,7 +66,7 @@
                                                 </p>
                                             </div>
                                             <div class="sign-up">
-                                                <input onclick="registrationMessage(); return false;" type="button" value="Create Account"/>
+                                                <input type="submit" value="Create Account"/>
                                             </div>
                                             </form>
                                         </div>
@@ -112,34 +112,55 @@
 <!-- header modal -->
 <!-- header -->
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.12.0/validate.min.js"></script>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
 <script>
 
-    $( "#i_mail" ).rules( "add", {
-        required: true,
-        minlength: 20,
-        messages: {
-            required: "Required input",
-            minlength: jQuery.validator.format("Please, at least {0} characters are necessary")
-        }
-    });
 
-    $('#form').validate({
+
+    $('#form1').validate({
 
         //... your validation rules come here,
-
-
-        submitHandler: function(form) {
-            $.ajax({
-                url: form.action,
-                type: form.method,
-                data: $(form).serialize(),
-                success: function(response) {
-                    $('#answers').html(response);
-                }
-            });
+        rules: {
+            login: {
+                required:true,
+                rangelength: [8,20]
+            },
+        },
+        messages:{
+            login:{
+                required:"To pole jest wymagane!"
+            }
         }
+
+
+
+    });
+
+    $('#form2').validate({
+
+        //... your validation rules come here,
+        rules: {
+            username: {
+                required:true,
+                rangelength: [8,20]
+            },
+
+            password: {
+                required: true,
+                rangelength: [4,20]
+            }
+        },
+        messages:{
+            username:{
+                required:"To pole jest wymagane!",
+                rangelength:"Please enter your complete name!"
+            }
+        }
+
+
+
     });
 
 

@@ -946,8 +946,8 @@
             <div class="timer_wrap">
                 <div id="counter"> </div>
             </div>
-            <script src="js/jquery.countdown.js"></script>
-            <script src="js/script.js"></script>
+            <script src="<?php echo base_url(); ?>assets/js/jquery.countdown.js"></script>
+            <script src="<?php echo base_url(); ?>assets/js/script.js"></script>
         </div>
         <div class="clearfix"> </div>
     </div>
@@ -1005,7 +1005,7 @@
                         </article>
                     </div>
                 </div>
-                <script src="js/jquery.wmuSlider.js"></script>
+                <script src="<?php echo base_url(); ?>assets/js/jquery.wmuSlider.js"></script>
                 <script>
                     $('.example1').wmuSlider();
                 </script>
@@ -1198,7 +1198,7 @@
 
             });
         </script>
-        <script type="text/javascript" src="js/jquery.flexisel.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexisel.js"></script>
     </div>
 </div>
 <!-- //top-brands -->
