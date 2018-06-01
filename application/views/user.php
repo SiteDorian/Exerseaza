@@ -3,9 +3,15 @@
 
     <div class="user_content">
 
-        <p>User place.</p>
-        <p> Name: <?php echo $name; ?> </p>
-        <p> Email: <?php echo $email; ?> </p>
+        <p><b>User place.</b></p>
+        <p> Name: <i> <?php echo $name; ?></i> </p>
+        <p> Email: <i><?php echo $email; ?></i>  </p>
+        <p>My orders</p>
+        <p>My messages</p>
+        <p>My favorites stores</p>
+
+        <a href="<?php echo site_url('form/logout'); ?>" class="logout_button"><img src="<?php echo base_url(); ?>/assets/images/logout.png" class="logout_img"></a>
+
     </div>
 
 

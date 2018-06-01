@@ -99,12 +99,12 @@
 
 
 
-            alert("stop");
+            alert("TODO: update cart");
         }
     });
 
 
-    var cart = JSON.parse(decodeURIComponent( localStorage.getItem("w3lssbmincart") ));
+    //var cart = JSON.parse(decodeURIComponent( localStorage.getItem("w3lssbmincart") ));
 
     //console.log(cart);
 

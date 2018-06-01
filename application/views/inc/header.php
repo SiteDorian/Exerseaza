@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
     <title> Magazin online </title>
+    <meta name="google-signin-client_id"
+          content="920755770625-a8su6d2l3kpfrap3cjed3ctkf0kq6ffk.apps.googleusercontent.com">
+    <!--    pentru google login-->
+
+
     <!-- for-mobile-apps -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Electronic Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -47,6 +53,9 @@
         });
     </script>
     <!-- //end-smooth-scrolling -->
+
+<!--    <script src='https://www.google.com/recaptcha/api.js'></script>-->
+    <!--    for reCAPTCHA checkbox-->
 </head>
 
 <body>
@@ -55,8 +64,18 @@
 <div class="header" id="home1">
     <div class="container">
         <div class="w3l_login">
-            <a href="#" data-toggle="modal" data-target="#myModal88"><span class="glyphicon glyphicon-user"
-                                                                           aria-hidden="true"></span></a>
+            <a href="#" data-toggle="modal" data-target="#myModal88">
+                <span class="glyphicon glyphicon-user" aria-hidden="true">
+
+                </span>
+            </a>
+        </div>
+        <div class="w3l_login" style=" margin-top: 10px; margin-left: 5px;">
+            <?php
+            if ($this->session->userdata('validated')) {
+                echo 'Hi, '.$this->session->userdata('name').' </br>My account.';
+            }
+            ?>
         </div>
         <div class="w3l_logo">
             <h1><a href="index.html">Web magazin<span> Dorian </span></a></h1>

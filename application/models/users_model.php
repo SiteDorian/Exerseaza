@@ -37,9 +37,18 @@ class Users_model extends CI_Model
         return $query->result();
     }
 
-    public function update()
+    public function update($user)
     {
-        //todo
+        $data = array(
+            'name' => $user['name'],
+            'status' => true,
+            'updated_at' => date("Y-m-d h:i:sa")
+        );
+
+        $this->db->insert('users', $data);
+        $this->db->update('users', $data, array('email' => $user['email']));
+
+        return $this->db->affected_rows();
     }
 
     public function delete($id)

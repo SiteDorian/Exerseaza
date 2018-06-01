@@ -20,6 +20,7 @@ class Cookies extends CI_Controller
         }
 
         echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+        echo '<pre>' . base_url() . '</pre>';
     }
 
 

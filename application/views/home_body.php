@@ -1,7 +1,7 @@
-
-<script>
-    $('#myModal88').modal('show');
-</script>
+<!---->
+<!--<script>-->
+<!--    $('#myModal88').modal('show');-->
+<!--</script>-->
 
 
 <!-- banner -->

@@ -48,7 +48,7 @@
                                 <div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
                                     <div class="facts">
                                         <div class="register">
-                                            <?php echo form_open('form/registration', array('id'=>'form2')); ?>
+                                            <?php echo form_open('form/registration', array('id'=>'form2', 'onsubmit'=>'return false;')); ?>
                                             <input placeholder="Name" name="username"
                                                    value="<?php echo set_value('username'); ?>" type="text" required="">
                                             <input placeholder="Email Address" name="email"
@@ -60,15 +60,56 @@
                                                    required="">
                                             <div style="color: red;">
                                                 <p id="registrationMessage">
-                                                    <?php if (isset($register_errors)) {
-                                                        echo $register_errors;
-                                                    } ?>
+                                                    <?php
+                                                        if (isset($register_errors)) {
+                                                            echo $register_errors;
+                                                        }
+
+                                                        if (isset($recaptcha_errors)){
+                                                            echo $recaptcha_errors;
+                                                        }
+
+//                                                    $CI =&get_instance();
+//                                                    $CI->load->library('reCAPTCHAlib');
+//                                                   // $CI->recaptchalib->yourFunction();
+//
+//                                                        $siteKey = "6LfAh1wUAAAAANXaxmZkSCkBY1mhEJoXU7ybT_TF";
+//                                                        $secret = "6LfAh1wUAAAAANSWjcuaPXt-7gg95iUGH8Cm1GW7";
+//                                                        // reCAPTCHA supported 40+ languages listed here: https://developers.google.com/recaptcha/docs/language
+//                                                        $lang = "en";
+//
+//                                                        // The response from reCAPTCHA
+//                                                        $resp = null;
+//                                                        // The error code from reCAPTCHA, if any
+//                                                        $error = null;
+//
+//                                                        $reCaptcha = new ReCaptcha($secret);
+//
+//                                                        // Was there a reCAPTCHA response?
+//                                                        if ($_POST["g-recaptcha-response"]) {
+//                                                            $resp = verifyResponse(
+//                                                                $_SERVER["REMOTE_ADDR"],
+//                                                                $_POST["g-recaptcha-response"]
+//                                                            );
+//                                                        }
+//
+//                                                        if ($resp != null && $resp->success) {
+//                                                            echo "You got it!";
+//                                                        }
+                                                    ?>
                                                 </p>
                                             </div>
+
+
+                                            <div id="verifica" class="g-recaptcha" data-sitekey="6LfAh1wUAAAAANXaxmZkSCkBY1mhEJoXU7ybT_TF"></div>
+
+
                                             <div class="sign-up">
-                                                <input type="submit" value="Create Account"/>
+                                                <input id="registrate12" type="submit" value="Create Account"/>
                                             </div>
+
                                             </form>
+                                            <script src='https://www.google.com/recaptcha/api.js?hl=ro'></script>
                                         </div>
                                     </div>
                                 </div>
@@ -95,10 +136,16 @@
                             <div class="col-md-12">
 
                                 <ul class="social">
-                                    <li class="social_facebook"><a href="<?php echo base_url();?>index.php/facebook_login/fblogin" class="entypo-facebook"></a></li>
-                                    <li class="social_dribbble"><a href="#" class="entypo-dribbble"></a></li>
+                                    <li class="social_facebook"><a href="<?php echo base_url();?>facebook_login/fblogin" class="entypo-facebook"></a></li>
+
+                                    <li class="social_dribbble"><a href="<?php echo site_url('google_login'); ?>" class="entypo-dribbble"></a></li>
+
                                     <li class="social_twitter"><a href="#" class="entypo-twitter"></a></li>
+
                                     <li class="social_behance"><a href="#" class="entypo-behance"></a></li>
+
+                                    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
                                 </ul>
                             </div>
                         </div>
@@ -116,8 +163,6 @@
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 
 <script>
-
-
 
     $('#form1').validate({
 

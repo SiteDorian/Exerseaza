@@ -33,4 +33,19 @@ class Images_model extends CI_Model
 
         return $query->result_array();
     }
+
+    public function get_main_checkout($userID = "0")
+    {
+        $conn = <<<EOD
+select products.id as id_product, encode(images.img, 'base64') as img from products 
+        inner join cart_items on products.id=cart_items.id_product
+            inner join cart on cart.id=cart_items.id_cart
+                inner join users on users.id=cart.id_user
+					inner join images on images.id_product=products.id
+                		where (cart.status=true) and (users.id=$userID) and (images.is_main=true);
+EOD;
+        $query = $this->db->query($conn);
+
+        return $query->result_array();
+    }
 }

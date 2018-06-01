@@ -24,7 +24,12 @@ class Products extends CI_Controller
     {
         $this->load->view('inc/header');
 
-        $this->load->view('login');
+        if ($this->session->userdata('validated')) {
+            $this->load->view('user',
+                ['name' => $this->session->userdata('name'), 'email' => $this->session->userdata('email')]);
+        } else {
+            $this->load->view('login');
+        }
 
         $categories = $this->categories_model->getAll();
 
