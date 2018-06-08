@@ -14,29 +14,39 @@ class Products_model extends CI_Model
 
     public $id, $name, $price, $description, $id_category, $created_at, $updated_at;
 
-    public function add()
+    public function add($name, $price, $description, $category)
     {
-        $this->name = $_POST['name'];
-        $this->price = $_POST['price'];
-        $this->description = $_POST['description'];
-        $this->id_category = $_POST['id_category'];
-        $this->created_at = time();
-        $this->updated_at = time();
+        $this->db->select_max('id');
+        $this->id = $this->db->get('categories')->row()->id;
+        $this->name = $name;
+        $this->price = $price;
+        $this->description = $description;
+        $this->id_category = $category;
+        $this->created_at = date("Y-m-d h:i:sa");
+        $this->updated_at = date("Y-m-d h:i:sa");
+        $this->db->insert('products', $this);
+        return $this->db->affected_rows();
     }
 
-    public function modify()
+    public function modify($id, $name, $price, $description, $category)
     {
-        $this->name = $_POST['name'];
-        $this->price = $_POST['price'];
-        $this->description = $_POST['description'];
-        $this->id_category = $_POST['id_category'];
-        $this->updated_at = time();
-        $this->db->update('products', $this, array('id' => $_POST['id']));
+        $data = [
+            'name' => $name,
+            'price' => $price,
+            'description' => $description,
+            'id_category' => $category,
+            'updated_at' => date("Y-m-d h:i:sa")
+        ];
+
+        $this->db->update('products', $data, array('id' => $id));
+
+        return $this->db->affected_rows();
     }
 
     public function drop()
     {
         $this->db->delete('products', array('id' => $_POST['id']));
+        return;
     }
 
 
@@ -48,7 +58,29 @@ class Products_model extends CI_Model
         $query = $this->db->query($conn);
 
         return $query->result_array();
+    }
 
+    public function getProduct($id)
+    {
+        $product = $this->db->select('*')->from('products')->where('id', $id)->get()->row();
+        if ($this->db->affected_rows() !== 1) {
+            return false;
+        }
+        if ($product) {
+            return $product;
+        }
+
+        return false;
+    }
+
+    public function getAll()
+    {
+        $conn = <<<EOD
+select products.id, products.name,  products.price, SUBSTRING(products.description, 1, 20) as description, products.created_at, products.updated_at, categories.name as category from products
+	inner join categories on categories.id= products.id_category
+		order by id
+EOD;
+        return $this->db->query($conn)->result();
     }
 
     public function getRating()

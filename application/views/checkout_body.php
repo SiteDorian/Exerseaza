@@ -100,13 +100,42 @@
 
     </div>
 
+<!--    <div class="paypal_button">-->
+<!--        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">-->
+<!--            <input type="hidden" name="cmd" value="_s-xclick">-->
+<!--            <input type="hidden" name="hosted_button_id" value="HSCRJTM8B34GY">-->
+<!--            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0"-->
+<!--                   name="submit" alt="PayPal - The safer, easier way to pay online!">-->
+<!--            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">-->
+<!--        </form>-->
+<!--    </div>-->
+
     <div class="paypal_button">
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="HSCRJTM8B34GY">
-            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0"
-                   name="submit" alt="PayPal - The safer, easier way to pay online!">
-            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+            <input type="hidden" name="hosted_button_id" value="3NYYPJLLHUJXY">
+            <input type="hidden" name="return" value="https://localhost/Exerseaza/paypal/thankyou?OrderID=88273882717A72734">
+            <input type="image" src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+
+            <img alt="" border="0" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+        </form>
+
+
+
+
+    </div>
+
+    <div class="paypal_button">
+        <form action="paypal" method="post" autocomplete="off">
+            <label for="product">
+                Product
+                <input type="text" name="product">
+            </label>
+            <label for="price">
+                Price
+                <input type="text" name="price">
+            </label>
+            <input type="submit" value="Pay">
         </form>
     </div>
 

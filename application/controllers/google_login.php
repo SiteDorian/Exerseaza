@@ -9,6 +9,7 @@ class Google_login extends CI_Controller
         require FCPATH . 'vendor/autoload.php';
         $this->load->model('registration_model');
         $this->load->model('users_model');
+        $this->load->model('groups_model');
     }
 
     public function index()
@@ -72,6 +73,8 @@ class Google_login extends CI_Controller
                 }
 
                 $user = $this->users_model->getByEmail($userProfileDetails->email);
+
+                $this->groups_model->add($user->id);
 
                 $data = array(
                     'id' => $user->id,

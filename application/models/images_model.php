@@ -23,7 +23,7 @@ class Images_model extends CI_Model
         return $query->result_array();
     }
 
-    public function get_main($category = "#")
+    public function get_main($category = null)
     {
         $conn = "select products.id, encode(images.img, 'base64') as img from products 
                     inner join images on images.id_product=products.id

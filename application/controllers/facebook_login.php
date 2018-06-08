@@ -15,6 +15,7 @@ class Facebook_login extends CI_Controller
         $this->load->helper('url');
         $this->load->model('registration_model');
         $this->load->model('users_model');
+        $this->load->model('groups_model');
     }
 
     function fblogin(){
@@ -117,6 +118,8 @@ class Facebook_login extends CI_Controller
         }
 
         $user = $this->users_model->getByEmail($me->getProperty('email'));
+
+        $this->groups_model->add($user->id);
 
         $data = array(
             'id' => $user->id,

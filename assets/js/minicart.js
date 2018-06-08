@@ -1778,7 +1778,7 @@
 
                         if (items) {
                             for (i = 0, len = items.length; i < len; i++) {
-                                _this.add(items[i]);
+                                _this.add(items[i], false); // false pentru a nu scrie de 2 ori in baza de date
                                 //console.log(items[i]);
                                 //TODO add products
                                 //alert(i);
@@ -1815,7 +1815,7 @@
          * @param {object} data Item data
          * @return {number} Item location in the cart
          */
-        Cart.prototype.add = function add(data) {
+        Cart.prototype.add = function add(data, todb=true) {
             var that = this,
                 items = this.items(),
                 idx = false,
@@ -1848,7 +1848,7 @@
 
             // If not, then try to add it
             if (!product) {
-                console.log('refresh');
+
                 product = new Product(data);
 
                 if (product.isValid()) {
@@ -1867,7 +1867,31 @@
             //console.log(product);
 
             if (product) {
-                console.log(isExisting);
+                //modificare in bd daca exista deja
+                if (isExisting) {
+                    console.log(product['_data']);
+                    $.ajax({
+                        type: "post",
+                        url: "cart/ajaxUpdateItem",
+                        dataType: 'JSON',
+                        data: {product: product['_data']}
+                    }) .done(function (reseponse){
+                        //console.log(reseponse.html);
+                    });
+                } else
+                    if (todb) {
+                        //console.log('to db!');
+                        $.ajax({
+                            type: "post",
+                            url: "cart/ajaxAddItem",
+                            dataType: 'JSON',
+                            data: {product: product['_data']}
+                        }) .done(function (reseponse){
+                            //console.log(reseponse.html);
+                        });
+                    }
+                //modificare in bd daca exista deja
+
                 this.fire('add', idx, product, isExisting);
             }
 
