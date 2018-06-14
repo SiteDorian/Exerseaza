@@ -38,9 +38,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <?php foreach ($products as $product): ?>
                                 <tr>
                                     <td><?php echo htmlspecialchars($product->id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                    <td> <a href="#"> <?php $ok=true; foreach ($images as $img) {
+                                    <td> <a href="<?php echo site_url() . 'admin/products/images/' . $product->id;?>"> <?php $ok=true; foreach ($images as $img) {
                                             if ($img['id'] == $product->id) {
-                                                echo "<img title='Modify main image' src='data:image/jpg;base64, " . $img['img'] . "' onerror=\"this.src='". base_url() ."/images/Default.png'\" alt=' ' width='50'/> ";
+                                                echo "<img title='Modify main image' src='" . base_url($img['img_link']) . "' onerror=\"this.src='". base_url() ."/images/Default.png'\" alt=' ' width='50'/> ";
                                                 $ok=false; break;
                                             }
                                         } if ($ok) echo "<img title='Add main image' src='". base_url() ."/images/Default.png'\" alt=' ' width='50'/> "; ?> </a> </td>

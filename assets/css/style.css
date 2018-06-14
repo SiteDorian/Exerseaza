@@ -49,6 +49,12 @@ html, body{
     width: 80px;
     display: block;
 }
+.category_name{
+    color: lightskyblue;
+    text-decoration: underline;
+    text-shadow: 1px 1px red;
+    font-style: italic;
+}
 p{
 	margin:0;
 	font-size:14px;

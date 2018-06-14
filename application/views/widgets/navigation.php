@@ -50,7 +50,7 @@
                                                     foreach ($categories as $k => $val) {
                                                         if ($val['id_parent'] == $id_curent) {
                                                             $cat = $val['name'];
-                                                            echo "<li><a href='" . site_url('products') . "?category=$cat'>" . $val['name'] . "</a></li>";
+                                                            echo "<li><a href='" . site_url('products') . "/".($cat)."/'>" . $val['name'] . "</a></li>";
                                                         }
                                                     }
                                                     ?>

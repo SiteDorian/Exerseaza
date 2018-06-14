@@ -13,6 +13,9 @@ class Welcome extends CI_Controller
         parent::__construct();
         require_once 'vendor/autoload.php';
 
+        $this->load->model('products_model');
+        $this->load->model('images_model');
+
     }
 
     public function index()
@@ -48,9 +51,15 @@ class Welcome extends CI_Controller
             'active_category' => 'home'
         ]);
 
+        /* Data */
+        $this->data['new_products'] = $this->products_model->get_new_products();
+        $this->data['rating'] = $this->products_model->getRating();
+        $this->data['main_images'] = $this->images_model->get_main();
+        $this->data['images'] = $this->images_model->get();
 
 
-        $this->load->view('home_body');
+
+        $this->load->view('home_body', $this->data);
 
         $this->load->view('inc/footer');
 

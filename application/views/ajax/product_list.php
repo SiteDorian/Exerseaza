@@ -1,5 +1,4 @@
 <?php
-
 $i = 0; //variabila care numara produsele din rand, --cate 3 pe rand
 
 foreach ($products
@@ -20,14 +19,12 @@ if ($i++ % 3 == 0) {
             <div class="hs-wrapper hs-wrapper2">
 
                 <?php
-                foreach ($images as $j => $imgs)
-                {
-                    if ($imgs['id']==$value['id']){
-                        echo "<img src='data:image/jpg;base64, ".$imgs['img'] . "' alt=' ' class='img-responsive'/> ";
+                foreach ($images as $j => $imgs) {
+                    if ($imgs['id'] == $value['id']) {
+                        echo "<img src='" . base_url($imgs['img']) . "' alt=' ' class='img-responsive'/> ";
                     }
                 }
                 ?>
-
 
 
                 <div class="w3_hs_bottom w3_hs_bottom_sub1">
@@ -53,9 +50,13 @@ if ($i++ % 3 == 0) {
                     <button type="submit" class="w3ls-cart">Add to cart</button>
                 </form>
             </div>
-            <div class="mobiles_grid_pos">
-                <h6>New</h6>
-            </div>
+            <?php
+            if ($value['created_at'] > date('Y-m-d h:i:sa', strtotime(date('Y-m-d h:i:sa') . ' -14 day'))) {
+                echo '<div class="mobiles_grid_pos">
+                                    <h6>New</h6>
+                                </div>';
+            }
+            ?>
         </div>
     </div>
 

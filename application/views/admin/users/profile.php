@@ -68,9 +68,114 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <h3 class="box-title">User orders / Cart</h3>
                     </div>
                     <div class="box-body">
-                        <p>
-                            not data ..
-                        </p>
+                        <?php
+                        if ($items):
+                            $count=0;
+                        $price=0;
+                        ?>
+                        <table class="cart_items_table">
+                            <tr>
+                                <th>
+                                    ID
+                                </th>
+                                <th colspan="2">
+                                    Product Name
+                                </th>
+                                <th>
+                                    Quantity
+                                </th>
+                                <th>
+                                    Price
+                                </th>
+                            </tr>
+
+                            <!--            <tr>-->
+                            <!--                <td colspan="6">-->
+                            <!--                    <hr>-->
+                            <!--                </td>-->
+                            <!--            </tr>-->
+                            <!---->
+                            <!--            <tr>-->
+                            <!--                <td>-->
+                            <!--                    Image-->
+                            <!--                </td>-->
+                            <!--                <td>-->
+                            <!--                    Name & description-->
+                            <!--                </td>-->
+                            <!--                <td>-->
+                            <!--                    2-->
+                            <!--                </td>-->
+                            <!--                <td>-->
+                            <!--                    3-->
+                            <!--                </td>-->
+                            <!--                <td>-->
+                            <!--                    4-->
+                            <!--                </td>-->
+                            <!--                <td>-->
+                            <!--                    5-->
+                            <!--                </td>-->
+                            <!--            </tr>-->
+
+                            <?php
+                            foreach ($items as $key => $item) {
+                                ?>
+
+                                <tr>
+                                    <td colspan="5">
+                                        <hr>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <?php
+                                        echo $item['id'];
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                        foreach ($images as $j => $imgs) {
+                                            if ($imgs['id_product'] == $item['id']) {
+                                                echo "<img src='data:image/jpg;base64, " . $imgs['img'] . "' alt=' ' class='img-checkout'/> ";
+                                            }
+                                        }
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <p><?php echo $item['name']; ?></p>
+                                    </td>
+                                    <td>
+                                        <?php echo $item['count']; $count+=$item['count']; ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $item['price']; $price+= preg_replace('~[\\\\/:*?$,"<>|]~', null,
+                                            $item['price']);?>
+                                    </td>
+                                </tr>
+
+                                <?php
+                            }
+                            ?>
+                            <tr>
+                                <td colspan="5">
+                                    <hr>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="center"><b>Total</b></td>
+                                <td>
+                                    <?php echo $count;?>
+                                </td>
+                                <td>
+                                    <?php echo "$".$price; ?>
+                                </td>
+                            </tr>
+
+                        </table>
+                        <?php
+                        else: echo "no orders...";
+                        endif;
+                        ?>
 
                     </div>
                 </div>

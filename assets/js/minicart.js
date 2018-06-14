@@ -1733,7 +1733,7 @@
 
             $.ajax({
                 type: "POST",
-                url: "cart/ajaxGet",
+                url: "/Exerseaza/cart/ajaxGet",
                 dataType: 'JSON',
                 // async: false //pentru a forta sa astepte datele din baza de date ...
             })
@@ -1789,7 +1789,7 @@
 
                         $.ajax({
                             type: "post",
-                            url: "cart/ajaxUpdate",
+                            url: "/Exerseaza/cart/ajaxUpdate",
                             dataType: 'JSON',
                             data: {items: items}
                         }) .done(function (reseponse){
@@ -1872,7 +1872,7 @@
                     console.log(product['_data']);
                     $.ajax({
                         type: "post",
-                        url: "cart/ajaxUpdateItem",
+                        url: "/Exerseaza/cart/ajaxUpdateItem",
                         dataType: 'JSON',
                         data: {product: product['_data']}
                     }) .done(function (reseponse){
@@ -1883,7 +1883,7 @@
                         //console.log('to db!');
                         $.ajax({
                             type: "post",
-                            url: "cart/ajaxAddItem",
+                            url: "/Exerseaza/cart/ajaxAddItem",
                             dataType: 'JSON',
                             data: {product: product['_data']}
                         }) .done(function (reseponse){
@@ -1995,7 +1995,7 @@
 
             $.ajax({
                 type: "post",
-                url: "cart/ajaxRemove",
+                url: "/Exerseaza/cart/ajaxRemove",
                 dataType: 'JSON',
                 data: {id: item[0]['_data']['add']}
             }) .done(function (reseponse){

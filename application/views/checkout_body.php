@@ -68,7 +68,7 @@
                         <?php
                             foreach ($images as $j => $imgs) {
                                 if ($imgs['id_product'] == $item['id']) {
-                                    echo "<img src='data:image/jpg;base64, " . $imgs['img'] . "' alt=' ' class='img-checkout'/> ";
+                                    echo "<img src=' " . base_url($imgs['img']) . "' alt=' ' class='img-checkout'/> ";
                                 }
                             }
                         ?>

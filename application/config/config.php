@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-//$config['base_url'] = 'http://ff597559.ngrok.io/Exerseaza/';
+//$config['base_url'] = 'http://03900684.ngrok.io/Exerseaza/';
 $config['base_url'] = 'http://localhost/Exerseaza/';
 
 /*
@@ -522,3 +522,7 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+
+//Products per page
+$config['per_page'] = 1;

@@ -22,7 +22,7 @@ class Products extends Admin_Controller
         $this->data['pagetitle'] = $this->page_title->show();
 
         /* Breadcrumbs :: Common */
-        $this->breadcrumbs->unshift(1, lang('menu_users'), 'admin/products');
+        $this->breadcrumbs->unshift(1, lang('menu_products'), 'admin/products');
     }
 
 
@@ -116,19 +116,11 @@ class Products extends Admin_Controller
     }
 
 
-    public function delete()
-    {
-        return;
-        /* Load Template */
-        //$this->template->admin_render('admin/users/delete', $this->data);
-    }
-
-
     public function edit($id)
     {
         $id = (int)$id;
 
-        if (!$this->ion_auth->logged_in() OR (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id))) {
+        if (!$this->ion_auth->logged_in() OR (!$this->ion_auth->is_admin())) {
             redirect('auth', 'refresh');
         }
 
@@ -202,6 +194,159 @@ class Products extends Admin_Controller
 
         /* Load Template */
         $this->template->admin_render('admin/products/edit', $this->data);
+
+    }
+
+    public function images($id)
+    {
+        $id = (int)$id;
+
+        if (!$this->ion_auth->logged_in() OR (!$this->ion_auth->is_admin() && !($this->ion_auth->user()->row()->id == $id))) {
+            redirect('auth', 'refresh');
+        }
+
+        /* Data */
+        $this->data['images'] = $this->images_model->get_product_images($id);
+        $this->data['productID'] = $id;
+
+        $this->data['product']= $this->products_model->getProduct($id);
+
+        /* Breadcrumbs */
+        $this->breadcrumbs->unshift(2, lang('menu_products_edit'), 'admin/products/edit');
+        $this->data['breadcrumb'] = $this->breadcrumbs->show();
+
+        if ($this->session->flashdata('delete_info')) {
+            $this->data['delete_info'] = $this->session->flashdata('delete_info');
+        }
+
+        if ($this->session->flashdata('upload_info')) {
+            $this->data['upload_info'] = $this->session->flashdata('upload_info');
+        }
+
+        if ($this->session->flashdata('image_info')) {
+            $this->data['image_info'] = $this->session->flashdata('image_info');
+        }
+
+        if (isset($_SESSION['delete_info'])) {
+            unset($_SESSION['delete_info']);
+        }
+
+        if (isset($_SESSION['upload_info'])) {
+            unset($_SESSION['upload_info']);
+        }
+
+        if (isset($_SESSION['image_info'])) {
+            unset($_SESSION['image_info']);
+        }
+
+
+        /* Load Template */
+        $this->template->admin_render('admin/products/images', $this->data);
+
+    }
+
+    public function delete($id, $id_product = null)
+    {
+        $this->load->helper("file");
+
+        $id = (int)$id;
+
+        if ($path = $this->images_model->delete($id)) {
+            $path = realpath($path);
+            //delete_files($path);
+            unlink($path);
+            $this->session->set_flashdata('delete_info', 'Image deleted successfull.');
+        } else {
+            $this->session->set_flashdata('delete_info', 'Image was not deleted!');
+        }
+
+        /* Load Template */
+        redirect('admin/products/images/' . $id_product, 'refresh');
+    }
+
+    public function upload($id_product = null)
+    {
+        $id_product = $id_product;
+
+        if (!$this->ion_auth->logged_in() OR (!$this->ion_auth->is_admin())) {
+            redirect('auth', 'refresh');
+        }
+
+        if (isset($_POST['btn']) && $_FILES['f1']['tmp_name'] != "" && $_FILES['f1']['tmp_name'] != null) {
+
+
+//            //insereaza in baza de date
+//            $image = file_get_contents($_FILES['f1']['tmp_name']);
+////            $image = addslashes(file_get_contents($_FILES['f1']['tmp_name']));
+//
+////            $base64 = base64_encode($image);
+//            $escaped = pg_escape_bytea($image);
+//
+//            if ($this->images_model->upload($id_product, $escaped)) {
+//                $this->session->set_flashdata('upload_info', "New image uploaded successfully!");
+//            } else {
+//                $this->session->set_flashdata('upload_info', "Error, nu sa incarcat imaginea!");
+//            }
+            if (!is_dir('images/product/'.$id_product)) {
+                mkdir('./images/product/' . $id_product, 0777, TRUE);
+            }
+
+            $config['upload_path']          = './images/product/'. $id_product.'/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 6144;
+            $config['max_width']            = 3000;
+            $config['max_height']           = 3000;
+            $new_name = time().$_FILES["f1"]['name'];
+            $config['file_name'] = $new_name;
+
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload('f1'))
+            {
+                $error = array('error' => $this->upload->display_errors());
+                $this->session->set_flashdata('upload_info', 'Error, image was not uploaded!');
+            }
+            else
+            {
+                if ($this->images_model->upload($id_product, $config['upload_path'].$new_name)) {
+                    $this->session->set_flashdata('upload_info', "New image uploaded successfully!");
+                } else {
+                    $this->session->set_flashdata('upload_info', "Error, nu sa incarcat imaginea in database!");
+                }
+            }
+
+            /* Load Template */
+            redirect('admin/products/images/' . $id_product, 'refresh');
+            return;
+        }
+        $this->session->set_flashdata('upload_info', "Error, not data!");
+        redirect('admin/products/images', 'refresh');
+        return;
+    }
+
+    public function set_main_image($imageID = null, $productID = null)
+    {
+        if (!$this->ion_auth->logged_in() OR (!$this->ion_auth->is_admin())) {
+            redirect('auth', 'refresh');
+        }
+        $this->db->where('id_product', $productID);
+        $this->db->where('is_main', true);
+        $this->db->update('images', ['is_main' => false]);
+        $rez = $this->db->affected_rows();
+
+        $this->db->where('id', $imageID);
+        if ($this->db->update('images', ['is_main' => true])) {
+            if ($rez > 0) {
+                $this->session->set_flashdata('image_info', 'Main image has been changed!');
+            } else {
+                $this->session->set_flashdata('image_info', 'Main image has been set!');
+            }
+        } else {
+            $this->session->set_flashdata('image_info', 'Error, main image has not been set!');
+        }
+
+        /* Load Template */
+        redirect('admin/products/images/' . $productID, 'refresh');
 
     }
 

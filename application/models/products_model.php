@@ -14,10 +14,11 @@ class Products_model extends CI_Model
 
     public $id, $name, $price, $description, $id_category, $created_at, $updated_at;
 
+
     public function add($name, $price, $description, $category)
     {
         $this->db->select_max('id');
-        $this->id = $this->db->get('categories')->row()->id;
+        $this->id = $this->db->get('products')->row()->id + 1;
         $this->name = $name;
         $this->price = $price;
         $this->description = $description;
@@ -71,6 +72,13 @@ class Products_model extends CI_Model
         }
 
         return false;
+    }
+
+    public function get_new_products()
+    {
+        $this->db->order_by("created_at", "desc");
+        $this->db->limit(4);
+        return $this->db->get('products')->result();
     }
 
     public function getAll()

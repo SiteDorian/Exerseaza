@@ -82,7 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <li class="header text-uppercase"><?php echo "Catalog"; ?></li>
                         <li class="<?=active_link_controller('categories')?>">
                             <a href="<?php echo site_url('admin/categories'); ?>">
-                                <i class="fa fa-categories"></i> <span>Caregories</span>
+                                <i class="fa fa-categories"></i> <span>Categories</span>
                             </a>
                         </li>
                         <li class="<?=active_link_controller('products')?>">
@@ -92,17 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </li>
 
 
-                        <li class="header text-uppercase"><?php echo $title; ?></li>
-                        <li class="<?=active_link_controller('license')?>">
-                            <a href="<?php echo site_url('admin/license'); ?>">
-                                <i class="fa fa-legal"></i> <span><?php echo lang('menu_license'); ?></span>
-                            </a>
-                        </li>
-                        <li class="<?=active_link_controller('resources')?>">
-                            <a href="<?php echo site_url('admin/resources'); ?>">
-                                <i class="fa fa-cubes"></i> <span><?php echo lang('menu_resources'); ?></span>
-                            </a>
-                        </li>
+
                     </ul>
                 </section>
             </aside>

@@ -35,6 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link rel="stylesheet" href="<?php echo base_url($frameworks_dir . '/ionicons/css/ionicons.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo base_url($frameworks_dir . '/adminlte/css/adminlte.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo base_url($frameworks_dir . '/adminlte/css/skins/skin-blue.min.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url().'assets/css/admin/image.css'; ?>">
 <?php if ($mobile === FALSE && $admin_prefs['transition_page'] == TRUE): ?>
         <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/animsition/animsition.min.css'); ?>">
 <?php endif; ?>
@@ -48,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <script src="<?php echo base_url($plugins_dir . '/respond/respond.min.js'); ?>"></script>
         <![endif]-->
 <?php endif; ?>
-
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
     </head>
     <body class="hold-transition skin-blue fixed sidebar-mini">
 <?php if ($mobile === FALSE && $admin_prefs['transition_page'] == TRUE): ?>

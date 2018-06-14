@@ -14,6 +14,8 @@ class Users extends Admin_Controller
         /* Load models */
         $this->load->model('registration_model');
         $this->load->model('groups_model');
+        $this->load->model('cart_model');
+        $this->load->model('images_model');
 
         /* Title Page :: Common */
         $this->page_title->push(lang('menu_users'));
@@ -320,10 +322,8 @@ class Users extends Admin_Controller
 
             $this->data['csrf'] = $this->_get_csrf_nonce();
             $this->data['id'] = (int)$user->id;
-            $this->data['firstname'] = !empty($user->name) ? htmlspecialchars($user->name, ENT_QUOTES,
+            $this->data['name'] = !empty($user->name) ? htmlspecialchars($user->name, ENT_QUOTES,
                 'UTF-8') : null;
-            $this->data['lastname'] = !empty($user->name) ? ' ' . htmlspecialchars($user->name, ENT_QUOTES,
-                    'UTF-8') : null;
 
             /* Load Template */
             $this->template->admin_render('admin/users/deactivate', $this->data);
@@ -353,6 +353,9 @@ class Users extends Admin_Controller
         $id = (int)$id;
 
         $this->data['user_info'] = $this->ion_auth->user($id)->result();
+        $this->data['items'] = $this->cart_model->getCheckout($id);
+        $this->data['images'] = $this->images_model->get_main_checkout($id); //get product images from user Cart
+
         foreach ($this->data['user_info'] as $k => $user) {
             $this->data['user_info'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
         }

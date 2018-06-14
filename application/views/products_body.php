@@ -113,27 +113,28 @@
                 </div>
             </div>
             <div class="col-md-8 w3ls_mobiles_grid_right">
-                <div class="col-md-6 w3ls_mobiles_grid_right_left">
-                    <div class="w3ls_mobiles_grid_right_grid1">
-                        <img src="<?php echo base_url(); ?>/images/46.jpg" alt=" " class="img-responsive"/>
-                        <div class="w3ls_mobiles_grid_right_grid1_pos1">
-                            <h3>Smart Phones<span>Up To</span> 15% Discount</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 w3ls_mobiles_grid_right_left">
-                    <div class="w3ls_mobiles_grid_right_grid1">
-                        <img src="<?php echo base_url(); ?>/images/47.jpg" alt=" " class="img-responsive"/>
-                        <div class="w3ls_mobiles_grid_right_grid1_pos">
-                            <h3>Top 10 Latest<span>Mobile </span>& Accessories</h3>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="col-md-6 w3ls_mobiles_grid_right_left">-->
+<!--                    <div class="w3ls_mobiles_grid_right_grid1">-->
+<!--                        <img src="--><?php //echo base_url(); ?><!--images/46.jpg" alt=" " class="img-responsive"/>-->
+<!--                        <div class="w3ls_mobiles_grid_right_grid1_pos1">-->
+<!--                            <h3>Smart Phones<span>Up To</span> 15% Discount</h3>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6 w3ls_mobiles_grid_right_left">-->
+<!--                    <div class="w3ls_mobiles_grid_right_grid1">-->
+<!--                        <img src="--><?php //echo base_url(); ?><!--images/47.jpg" alt=" " class="img-responsive"/>-->
+<!--                        <div class="w3ls_mobiles_grid_right_grid1_pos">-->
+<!--                            <h3>Top 10 Latest<span>Mobile </span>& Accessories</h3>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <h3 class="category_name"><?php if (isset($category)) echo $category;?></h3>
                 <div class="clearfix"></div>
 
                 <div class="w3ls_mobiles_grid_right_grid2">
                     <div class="w3ls_mobiles_grid_right_grid2_left">
-                        <h3>Showing Results: 0-1</h3>
+                        <h3>Showing Results: <p><?php if (isset($html)) echo $html;?></p></h3>
                     </div>
                     <div class="w3ls_mobiles_grid_right_grid2_right">
                         <select name="select_item" class="select_item" onchange="sorting(this);">
@@ -148,105 +149,6 @@
                     <div class="clearfix"></div>
                 </div>
 
-                <!--Un rand de produse -- 3 in rand
-                <div class="w3ls_mobiles_grid_right_grid3">
-                    <div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
-                        <div class="agile_ecommerce_tab_left mobiles_grid">
-                            <div class="hs-wrapper hs-wrapper2">
-                                <img src="<?php echo base_url(); ?>/images/31.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/30.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/27.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/28.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/29.jpg" alt=" " class="img-responsive"/>
-                                <div class="w3_hs_bottom w3_hs_bottom_sub1">
-                                    <ul>
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#myModal9"><span
-                                                        class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <h5><a href="single.html">Smart Phone</a></h5>
-                            <div class="simpleCart_shelfItem">
-                                <p><span>$250</span> <i class="item_price">$245</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="w3ls_item" value="Smart Phone"/>
-                                    <input type="hidden" name="amount" value="245.00"/>
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
-                                </form>
-                            </div>
-                            <div class="mobiles_grid_pos">
-                                <h6>New</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
-                        <div class="agile_ecommerce_tab_left mobiles_grid">
-                            <div class="hs-wrapper hs-wrapper2">
-                                <img src="<?php echo base_url(); ?>/images/p1.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/p2.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/p3.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/p4.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/p1.jpg" alt=" " class="img-responsive"/>
-                                <div class="w3_hs_bottom w3_hs_bottom_sub1">
-                                    <ul>
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#myModal4"><span
-                                                        class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <h5><a href="single.html">Audio-speaker</a></h5>
-                            <div class="simpleCart_shelfItem">
-                                <p><span>$50</span> <i class="item_price">$45</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="w3ls_item" value="Audio-speaker"/>
-                                    <input type="hidden" name="amount" value="45.00"/>
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
-                        <div class="agile_ecommerce_tab_left mobiles_grid">
-                            <div class="hs-wrapper hs-wrapper2">
-                                <img src="<?php echo base_url(); ?>/images/30.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/28.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/26.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/27.jpg" alt=" " class="img-responsive"/>
-                                <img src="<?php echo base_url(); ?>/images/29.jpg" alt=" " class="img-responsive"/>
-                                <div class="w3_hs_bottom w3_hs_bottom_sub1">
-                                    <ul>
-                                        <li>
-                                            <a href="#" data-toggle="modal" data-target="#myModal9"><span
-                                                        class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <h5><a href="single.html">Red Mobile</a></h5>
-                            <div class="simpleCart_shelfItem">
-                                <p><span>$80</span> <i class="item_price">$65</i></p>
-                                <form action="#" method="post">
-                                    <input type="hidden" name="cmd" value="_cart"/>
-                                    <input type="hidden" name="add" value="1"/>
-                                    <input type="hidden" name="w3ls_item" value="Red Mobile"/>
-                                    <input type="hidden" name="amount" value="65.00"/>
-                                    <button type="submit" class="w3ls-cart">Add to cart</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                //Randul de produse
-                -->
 
                 <div id="here">
 
@@ -254,7 +156,7 @@
 
                     $i = 0; //variabila care numara produsele din rand, --cate 3 pe rand
 
-                    foreach ($products
+                    if (isset($products) && $products)foreach ($products
 
                     as $key => $value):
                     if ($i++ % 3 == 0) {
@@ -267,14 +169,14 @@
                         <?php
                         }
                         ?>
-                        <div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles">
+                        <div class="col-md-4 agileinfo_new_products_grid agileinfo_new_products_grid_mobiles" style="border: 1px solid grey; padding: 5px;">
                             <div class="agile_ecommerce_tab_left mobiles_grid">
                                 <div class="hs-wrapper hs-wrapper2">
 
                                     <?php
                                     foreach ($images as $j => $imgs) {
                                         if ($imgs['id'] == $value['id']) {
-                                            echo "<img src='data:image/jpg;base64, " . $imgs['img'] . "' alt=' ' class='img-responsive'/> ";
+                                            echo "<img src='" . base_url($imgs['img']) . "' alt=' ' class='img-responsive'/> ";
                                         }
                                     }
                                     ?>
@@ -304,9 +206,14 @@
                                         <button type="submit" class="w3ls-cart">Add to cart</button>
                                     </form>
                                 </div>
-                                <div class="mobiles_grid_pos">
+                                <?php
+                                if ($value['created_at'] > date('Y-m-d h:i:sa', strtotime(date('Y-m-d h:i:sa') . ' -14 day'))) {
+                                    echo '<div class="mobiles_grid_pos">
                                     <h6>New</h6>
-                                </div>
+                                </div>';
+                                }
+                                ?>
+
                             </div>
                         </div>
 
@@ -340,9 +247,9 @@
                         <div class="modal-body">
                             <div class="col-md-5 modal_body_left">
 
-                                <img src="data:image/jpg;base64, <?php foreach ($main_images as $i => $img) {
+                                <img src="<?php foreach ($main_images as $i => $img) {
                                     if ($img['id'] == $value['id']) {
-                                        echo $img['img'];
+                                        echo base_url($img['img_link']);
                                         break;
                                     }
                                 } ?>" alt="No data.." class="img-responsive"/>
@@ -433,7 +340,7 @@
                 <section>
                     <div class="modal-body">
                         <div class="col-md-5 modal_body_left">
-                            <img src="images/27.jpg" alt=" " class="img-responsive"/>
+                            <img src="<?php echo base_url()?>images/27.jpg" alt=" " class="img-responsive"/>
                         </div>
                         <div class="col-md-7 modal_body_right">
                             <h4>Latest Smart Phone </h4>
@@ -446,19 +353,19 @@
                                 deserunt mollit anim id est laborum.</p>
                             <div class="rating">
                                 <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
+                                    <img src="<?php echo base_url(); ?>images/star-.png" alt=" " class="img-responsive"/>
                                 </div>
                                 <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
+                                    <img src="<?php echo base_url(); ?>images/star-.png" alt=" " class="img-responsive"/>
                                 </div>
                                 <div class="rating-left">
-                                    <img src="images/star-.png" alt=" " class="img-responsive"/>
+                                    <img src="<?php echo base_url(); ?>images/star-.png" alt=" " class="img-responsive"/>
                                 </div>
                                 <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive"/>
+                                    <img src="<?php echo base_url(); ?>images/star.png" alt=" " class="img-responsive"/>
                                 </div>
                                 <div class="rating-left">
-                                    <img src="images/star.png" alt=" " class="img-responsive"/>
+                                    <img src="<?php echo base_url(); ?>images/star.png" alt=" " class="img-responsive"/>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -628,19 +535,36 @@
 </div>
 
 <script>
-    function sorting(_this) {
-
+    function sorting2(_this) {
         $.ajax({
             type: "POST",
-            url: "products/ajaxSortingProduct",
+            url: "<?php echo site_url();?>products/ajaxSortingProduct",
             data: {sort: $(_this).val(), category: '<?php echo $category; ?>'},
             dataType: 'JSON'
         })
             .done(function (reseponse) {
-                //console.log(reseponse.html);
+                console.log(reseponse.html);
 
                 if (reseponse.success) {
                     $('#here').html(reseponse.html);
+
+                }
+            });
+
+    }
+    function sorting(_this) {
+        $.ajax({
+            type: "POST",
+            url: "<?php echo site_url();?>products/ajaxTestSortingProduct",
+            data: {sort: $(_this).val(), category: '<?php echo $category; ?>'},
+            dataType: 'JSON'
+        })
+            .done(function (reseponse) {
+                console.log(reseponse.html);
+
+                if (reseponse.success) {
+                    //$('#here').html(reseponse.html);
+                    window.location.replace('<?php echo site_url("products/$category/1"); ?>');
 
                 }
             });

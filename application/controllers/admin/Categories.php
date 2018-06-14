@@ -17,7 +17,7 @@ class Categories extends Admin_Controller
         $this->data['pagetitle'] = $this->page_title->show();
 
         /* Breadcrumbs :: Common */
-        $this->breadcrumbs->unshift(1, 'categories', 'admin/categories');
+        $this->breadcrumbs->unshift(1, 'Categories', 'admin/categories');
     }
 
     public function index()
